@@ -1,0 +1,87 @@
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <link href="../css/login.css" type="text/css" rel="stylesheet"/>
+    <link rel="shortcut icon" href="../favicon.ico"/>
+</head>
+<title>日期和时间</title>
+<body onload="startclock()">
+<div class="login-view">
+    <div class="login-wrapper" ng-controller="loginCtrl" style="height: 640px">
+        <div class="login-box">
+            <div class="company-name" style="text-align: center;width: 320px;height: 150px;">
+                <img src="./图片/bjut-logo-mini.png" style="width:320px;height: 150px;">
+            </div>
+            <div class="ewm" style="text-align: center;">
+                <img src="./图片/green-out.png" style="width:260px;height: 260px;">
+            </div>
+            <div id="codeMessage" style="text-align: center;margin-top: 20px;">
+                <label align="center"><font style="font-size: 35px;font-weight: bold;"
+                                            color="#B50707">出校申请已通过</font></label>
+            </div>
+            <div id="studentNoDiv" style="text-align: center;margin-top: 20px;">
+                <label align="center"><font style="font-size: 27px;">学号：20371111</font></label>
+            </div>
+            <div id="time" style="text-align: center;margin-top: 20px;">
+                <body onload="time()"></body>
+                <span id="time" style="font-size: 15pt;color:#000000;border:0;width: 320px;text-align: right;"></span>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../js/jquery.js" type="application/javascript"></script>
+<script src="../js/jquery.qrcode.min.js" type="application/javascript"></script>
+<script src="../js/clock.js" type="application/javascript"></script>
+<script>
+    function time(){
+        var date = new Date();
+        var year = date.getFullYear();
+        var month = date.getMonth()+1;
+        var day = date.getDate();
+        var week = date.getDay();
+        week="星期"+"日一二三四五六".charAt(week);
+        /*switch(week){
+            case 1:
+                week="星期一";
+                break;
+            case 2:
+                week="星期二";
+                break;
+            case 3:
+                week="星期三";
+                break;
+            case 4:
+                week="星期四";
+                break;
+            case 5:
+                week="星期五";
+                break;
+            case 6:
+                week="星期六";
+                break;
+            case 0:
+                week="星期日";
+                break;
+        }*/
+        var hour =date.getHours();
+        hour=hour<10?"0"+hour:hour;
+        var minute =date.getMinutes();
+        minute=minute<10?"0"+minute:minute;
+        var second = date.getSeconds();
+        second=second<10?"0"+second:second;
+        var currentTime = year+"-"+month+"-"+day+"  "+week+"   "+hour+":"+minute+":"+second;
+        document.getElementById("time").innerHTML=currentTime;
+    }
+    setInterval("time()",1000);
+</script>
+
+   
+</body>
+
+
+</html>
